@@ -20,7 +20,7 @@ public:
 
     void setNombre(string nombre);
     void agregarProducto(Producto producto);
-    void eliminarProducto(Producto producto);
+    bool eliminarProducto(string nombreDelProducto);
     void mostrarProductos();
     void mostrarProductos(string nombre);
     void mostrarProductos(int precio);
@@ -47,15 +47,17 @@ void Tienda::agregarProducto(Producto producto)
     productos.push_back(producto);
 }
 
-void Tienda::eliminarProducto(Producto producto)
+bool Tienda::eliminarProducto(string nombreDelProducto)
 {
     for (size_t i = 0; i < productos.size(); i++)
     {
-        if (productos[i] == producto)
+        if (productos[i].getNombre() == nombreDelProducto)
         {
             productos.erase(productos.begin() + i);
+            return true;
         }
     }
+    return false;
 }
 
 void Tienda::mostrarProductos()

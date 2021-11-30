@@ -7,6 +7,8 @@
 using namespace std;
 
 int menu();
+int encontrarTiendaEnLista(vector<Tienda> listaDeTiendas, string nombre);
+int encontrarPersonaEnLista(vector<Persona> listaDePersonas, string nombre);
 
 int main()
 {
@@ -22,9 +24,10 @@ int main()
             string nombre;
             string apellido;
             cout << "Ingrese el nombre: ";
-            cin >> nombre;
+            cin.ignore();
+            getline(cin, nombre);
             cout << "Ingrese el apellido: ";
-            cin >> apellido;
+            getline(cin, apellido);
             Persona persona(nombre, apellido);
             cout << persona.getNombre() << " " << persona.getApellido() << endl;
             listaDePersonas.push_back(persona);
@@ -34,7 +37,8 @@ int main()
         {
             string nombre;
             cout << "Ingrese el nombre de la tienda: ";
-            cin >> nombre;
+            cin.ignore();
+            getline(cin, nombre);
             Tienda tienda(nombre);
             listaDeTiendas.push_back(tienda);
             break;
@@ -45,23 +49,16 @@ int main()
             int precio;
             string nombreTienda;
             cout << "Ingrese el nombre de la tienda: ";
-            cin >> nombreTienda;
-            int posicion = -1;
-            for (size_t i = 0; i < listaDeTiendas.size(); i++)
-            {
-                if (listaDeTiendas[i].getNombre() == nombreTienda)
-                {
-                    posicion = i;
-                    break;
-                }
-            }
+            cin.ignore();
+            getline(cin, nombreTienda);
+            int posicion = encontrarTiendaEnLista(listaDeTiendas, nombreTienda);
             if (posicion == -1)
             {
                 cout << "No se encontro la tienda" << endl;
                 break;
             }
             cout << "Ingrese el nombre del producto: ";
-            cin >> nombre;
+            getline(cin, nombre);
             cout << "Ingrese el precio del producto: ";
             cin >> precio;
             cout << "Ingrese el numero de productos: ";
@@ -77,14 +74,56 @@ int main()
         }
         case 4:
         {
-            cout << "TODO" << endl;
+            string nombreTienda;
+            cout << "Ingrese el nombre de la tienda: ";
+            cin.ignore();
+            getline(cin, nombreTienda);
+            int posicion = encontrarTiendaEnLista(listaDeTiendas, nombreTienda);
+            if (posicion == -1)
+            {
+                cout << "No se encontro la tienda" << endl;
+                break;
+            }
+            string nombreCliente;
+            cout << "Ingrese el nombre del cliente: ";
+            getline(cin, nombreCliente);
+            int posicionCliente = encontrarPersonaEnLista(listaDePersonas, nombreCliente);
+            if (posicionCliente == -1)
+            {
+                cout << "No se encontro el cliente" << endl;
+                break;
+            }
+            listaDeTiendas[posicion].mostrarProductos();
+            cout << endl;
+            cout << "Ingrese el nombre del producto: ";
+            string nombreProducto;
+            getline(cin, nombreProducto);
+            int cantidadDeProductos;
+            cout << "Ingrese la cantidad de productos a comprar: ";
+            cin >> cantidadDeProductos;
+            int productosComprados = 0;
+            for (int i = 0; i < cantidadDeProductos; i++)
+            {
+                bool ok = listaDeTiendas[posicion].eliminarProducto(nombreProducto);
+                if (ok)
+                {
+                    productosComprados++;
+                }
+                else
+                {
+                    cout << "No hay suficientes productos" << endl;
+                    break;
+                }
+            }
+            cout << "Productos comprados: " << productosComprados << endl;
             break;
         }
         case 5:
         {
             string nombre;
             cout << "Ingrese el nombre de la tienda: ";
-            cin >> nombre;
+            cin.ignore();
+            getline(cin, nombre);
             bool encontrado = false;
             for (size_t i = 0; i < listaDeTiendas.size(); i++)
             {
@@ -133,4 +172,28 @@ int menu()
         return menu();
     }
     return opcion;
+}
+
+int encontrarTiendaEnLista(vector<Tienda> listaDeTiendas, string nombre)
+{
+    for (size_t i = 0; i < listaDeTiendas.size(); i++)
+    {
+        if (listaDeTiendas[i].getNombre() == nombre)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+int encontrarPersonaEnLista(vector<Persona> listaDePersonas, string nombre)
+{
+    for (size_t i = 0; i < listaDePersonas.size(); i++)
+    {
+        if (listaDePersonas[i].getNombre() == nombre)
+        {
+            return i;
+        }
+    }
+    return -1;
 }
