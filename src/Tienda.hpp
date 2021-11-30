@@ -48,7 +48,7 @@ void Tienda::agregarProducto(Producto producto)
 
 void Tienda::eliminarProducto(Producto producto)
 {
-    for (int i = 0; i < productos.size(); i++)
+    for (size_t i = 0; i < productos.size(); i++)
     {
         if (productos[i] == producto)
         {
@@ -59,7 +59,7 @@ void Tienda::eliminarProducto(Producto producto)
 
 void Tienda::mostrarProductos()
 {
-    for (int i = 0; i < productos.size(); i++)
+    for (size_t i = 0; i < productos.size(); i++)
     {
         cout << productos[i].getNombre() << " " << productos[i].getPrecio() << endl;
     }
@@ -67,7 +67,7 @@ void Tienda::mostrarProductos()
 
 void Tienda::mostrarProductos(string nombre)
 {
-    for (int i = 0; i < productos.size(); i++)
+    for (size_t i = 0; i < productos.size(); i++)
     {
         if (productos[i].getNombre() == nombre)
         {
@@ -78,7 +78,7 @@ void Tienda::mostrarProductos(string nombre)
 
 void Tienda::mostrarProductos(int precio)
 {
-    for (int i = 0; i < productos.size(); i++)
+    for (size_t i = 0; i < productos.size(); i++)
     {
         if (productos[i].getPrecio() == precio)
         {
