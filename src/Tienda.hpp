@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include "Producto.hpp"
 
 using namespace std;
@@ -59,9 +60,14 @@ void Tienda::eliminarProducto(Producto producto)
 
 void Tienda::mostrarProductos()
 {
+    map<string, int> cantidadDeProductos;
     for (size_t i = 0; i < productos.size(); i++)
     {
-        cout << productos[i].getNombre() << " " << productos[i].getPrecio() << endl;
+        cantidadDeProductos[productos[i].getNombre()]++;
+    }
+    for (auto it = cantidadDeProductos.begin(); it != cantidadDeProductos.end(); it++)
+    {
+        cout << it->first << ": " << it->second << endl;
     }
 }
 
