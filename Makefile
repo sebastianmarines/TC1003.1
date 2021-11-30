@@ -16,7 +16,7 @@ run: $(OUT)
 	./$(OUT)
 
 clean:
-	rm -f $(OBJS) $(OUT)
+	rm -f $(OBJS) $(OUT) src/main
 
 
 .PHONY: all run clean execute
