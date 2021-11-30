@@ -10,6 +10,8 @@ int menu();
 
 int main()
 {
+    vector<Persona> listaDePersonas;
+    vector<Tienda> listaDeTiendas;
     while (true)
     {
         switch (menu())
@@ -25,14 +27,78 @@ int main()
             cin >> apellido;
             Persona persona(nombre, apellido);
             cout << persona.getNombre() << " " << persona.getApellido() << endl;
+            listaDePersonas.push_back(persona);
             break;
         }
         case 2:
         {
-            Tienda tienda("Tienda 1");
-            Producto producto("Producto 1", 100);
-            tienda.agregarProducto(producto);
-            tienda.mostrarProductos();
+            string nombre;
+            cout << "Ingrese el nombre de la tienda: ";
+            cin >> nombre;
+            Tienda tienda(nombre);
+            listaDeTiendas.push_back(tienda);
+            break;
+        }
+        case 3:
+        {
+            string nombre;
+            int precio;
+            string nombreTienda;
+            cout << "Ingrese el nombre de la tienda: ";
+            cin >> nombreTienda;
+            int posicion = -1;
+            for (size_t i = 0; i < listaDeTiendas.size(); i++)
+            {
+                if (listaDeTiendas[i].getNombre() == nombreTienda)
+                {
+                    posicion = i;
+                    break;
+                }
+            }
+            if (posicion == -1)
+            {
+                cout << "No se encontro la tienda" << endl;
+                break;
+            }
+            cout << "Ingrese el nombre del producto: ";
+            cin >> nombre;
+            cout << "Ingrese el precio del producto: ";
+            cin >> precio;
+            cout << "Ingrese el numero de productos: ";
+            int numeroDeProductos;
+            cin >> numeroDeProductos;
+            Producto producto(nombre, precio);
+            for (int j = 0; j < numeroDeProductos; j++)
+            {
+                listaDeTiendas[posicion].agregarProducto(producto);
+            }
+            cout << "Productos agregados exitosamente" << endl;
+            break;
+        }
+        case 4:
+        {
+            cout << "TODO" << endl;
+            break;
+        }
+        case 5:
+        {
+            string nombre;
+            cout << "Ingrese el nombre de la tienda: ";
+            cin >> nombre;
+            bool encontrado = false;
+            for (size_t i = 0; i < listaDeTiendas.size(); i++)
+            {
+                if (listaDeTiendas[i].getNombre() == nombre)
+                {
+                    listaDeTiendas[i].mostrarProductos();
+                    encontrado = true;
+                    break;
+                }
+                if (!encontrado)
+                {
+                    cout << "No se encontro la tienda" << endl;
+                }
+            }
             break;
         }
         default:
