@@ -23,7 +23,6 @@ public:
     bool eliminarProducto(string nombreDelProducto);
     void mostrarProductos();
     void mostrarProductos(string nombre);
-    void mostrarProductos(int precio);
 
     bool operator==(Tienda &tienda);
 };
@@ -75,24 +74,15 @@ void Tienda::mostrarProductos()
 
 void Tienda::mostrarProductos(string nombre)
 {
+    int cantidad = 0;
     for (size_t i = 0; i < productos.size(); i++)
     {
         if (productos[i].getNombre() == nombre)
         {
-            cout << productos[i].getNombre() << " " << productos[i].getPrecio() << endl;
+            cantidad++;
         }
     }
-}
-
-void Tienda::mostrarProductos(int precio)
-{
-    for (size_t i = 0; i < productos.size(); i++)
-    {
-        if (productos[i].getPrecio() == precio)
-        {
-            cout << productos[i].getNombre() << " " << productos[i].getPrecio() << endl;
-        }
-    }
+    cout << nombre << ": " << cantidad << endl;
 }
 
 #endif
