@@ -9,7 +9,7 @@ LFLAGS	 =
 all: $(OBJS)
 	$(CC) -g $(OBJS) -o $(OUT) $(LFLAGS)
 
-main.o: src/main.cpp
+main.o: src/main.cpp src/Persona.hpp src/Producto.hpp src/Tienda.hpp
 	$(CC) $(FLAGS) src/main.cpp
 
 run: $(OUT)
