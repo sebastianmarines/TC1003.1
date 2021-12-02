@@ -18,9 +18,8 @@ int main()
     {
         switch (menu())
         {
-        case 1:
+        case 1: // Agregar persona
         {
-
             string nombre;
             string apellido;
             cout << "Ingrese el nombre: ";
@@ -33,7 +32,7 @@ int main()
             listaDePersonas.push_back(persona);
             break;
         }
-        case 2:
+        case 2: // Agregar tienda
         {
             string nombre;
             cout << "Ingrese el nombre de la tienda: ";
@@ -43,7 +42,7 @@ int main()
             listaDeTiendas.push_back(tienda);
             break;
         }
-        case 3:
+        case 3: // Agregar producto
         {
             string nombre;
             int precio;
@@ -72,7 +71,7 @@ int main()
             cout << "Productos agregados exitosamente" << endl;
             break;
         }
-        case 4:
+        case 4: // Comprar producto
         {
             string nombreTienda;
             cout << "Ingrese el nombre de la tienda: ";
@@ -104,7 +103,7 @@ int main()
             int productosComprados = 0;
             for (int i = 0; i < cantidadDeProductos; i++)
             {
-                bool ok = listaDeTiendas[posicion].eliminarProducto(nombreProducto);
+                bool ok = listaDeTiendas[posicion].comprarProducto(nombreProducto, listaDePersonas[posicionCliente]);
                 if (ok)
                 {
                     productosComprados++;
@@ -118,7 +117,7 @@ int main()
             cout << "Productos comprados: " << productosComprados << endl;
             break;
         }
-        case 5:
+        case 5: // Mostrar productos
         {
             string nombre;
             cout << "Ingrese el nombre de la tienda: ";
@@ -133,12 +132,28 @@ int main()
             listaDeTiendas[posicion].mostrarProductos();
             break;
         }
-        case 6:
+        case 6: // Mostrar tiendas
         {
             for (size_t i = 0; i < listaDeTiendas.size(); i++)
             {
                 cout << listaDeTiendas[i].getNombre() << endl;
             }
+            break;
+        }
+        case 7: // Mostrar información de cliente
+        {
+            string nombre;
+            cout << "Ingrese el nombre del cliente: ";
+            cin.ignore();
+            getline(cin, nombre);
+            int posicion = encontrarPersonaEnLista(listaDePersonas, nombre);
+            if (posicion == -1)
+            {
+                cout << "No se encontro el cliente" << endl;
+                break;
+            }
+            cout << listaDePersonas[posicion].getNombre() << " " << listaDePersonas[posicion].getApellido() << endl;
+            listaDePersonas[posicion].mostrarProductosComprados();
             break;
         }
         default:
@@ -158,14 +173,15 @@ int menu()
     cout << setw(10) << "4. Comprar producto" << endl;
     cout << setw(10) << "5. Mostrar productos" << endl;
     cout << setw(10) << "6. Mostrar tiendas" << endl;
-    cout << left << setw(10) << "7. Salir" << right << endl;
+    cout << setw(10) << "7. Mostrar información de cliente" << endl;
+    cout << left << setw(10) << "8. Salir" << right << endl;
     cout << endl;
 
     int opcion;
     cout << "Ingrese una opcion: ";
     cin >> opcion;
 
-    if (opcion > 7 || opcion < 1)
+    if (opcion > 8 || opcion < 1)
     {
         cout << "Opcion invalida" << endl;
         return menu();

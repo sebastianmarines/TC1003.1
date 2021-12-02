@@ -3,6 +3,7 @@
 #include <vector>
 #include <map>
 #include "Producto.hpp"
+#include "Persona.hpp"
 
 using namespace std;
 
@@ -20,7 +21,7 @@ public:
 
     void setNombre(string nombre);
     void agregarProducto(Producto producto);
-    bool eliminarProducto(string nombreDelProducto);
+    bool comprarProducto(string nombreDelProducto, Persona &persona);
     void mostrarProductos();
     void mostrarProductos(string nombre);
 
@@ -46,12 +47,14 @@ void Tienda::agregarProducto(Producto producto)
     productos.push_back(producto);
 }
 
-bool Tienda::eliminarProducto(string nombreDelProducto)
+bool Tienda::comprarProducto(string nombreDelProducto, Persona &persona)
 {
     for (size_t i = 0; i < productos.size(); i++)
     {
         if (productos[i].getNombre() == nombreDelProducto)
         {
+            Producto producto = productos[i];
+            persona.agregarProducto(producto);
             productos.erase(productos.begin() + i);
             return true;
         }
