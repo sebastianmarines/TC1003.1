@@ -7,8 +7,19 @@
 using namespace std;
 
 int menu();
-int encontrarTiendaEnLista(vector<Tienda> listaDeTiendas, string nombre);
-int encontrarPersonaEnLista(vector<Persona> listaDePersonas, string nombre);
+
+template <class T>
+int encontrarEnLista(vector<T> lista, string nombre)
+{
+    for (size_t i = 0; i < lista.size(); i++)
+    {
+        if (lista[i].getNombre() == nombre)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
 
 int main()
 {
@@ -50,7 +61,7 @@ int main()
             cout << "Ingrese el nombre de la tienda: ";
             cin.ignore();
             getline(cin, nombreTienda);
-            int posicion = encontrarTiendaEnLista(listaDeTiendas, nombreTienda);
+            int posicion = encontrarEnLista(listaDeTiendas, nombreTienda);
             if (posicion == -1)
             {
                 cout << "No se encontro la tienda" << endl;
@@ -77,7 +88,7 @@ int main()
             cout << "Ingrese el nombre de la tienda: ";
             cin.ignore();
             getline(cin, nombreTienda);
-            int posicion = encontrarTiendaEnLista(listaDeTiendas, nombreTienda);
+            int posicion = encontrarEnLista(listaDeTiendas, nombreTienda);
             if (posicion == -1)
             {
                 cout << "No se encontro la tienda" << endl;
@@ -86,7 +97,7 @@ int main()
             string nombreCliente;
             cout << "Ingrese el nombre del cliente: ";
             getline(cin, nombreCliente);
-            int posicionCliente = encontrarPersonaEnLista(listaDePersonas, nombreCliente);
+            int posicionCliente = encontrarEnLista(listaDePersonas, nombreCliente);
             if (posicionCliente == -1)
             {
                 cout << "No se encontro el cliente" << endl;
@@ -123,7 +134,7 @@ int main()
             cout << "Ingrese el nombre de la tienda: ";
             cin.ignore();
             getline(cin, nombre);
-            int posicion = encontrarTiendaEnLista(listaDeTiendas, nombre);
+            int posicion = encontrarEnLista(listaDeTiendas, nombre);
             if (posicion == -1)
             {
                 cout << "No se encontro la tienda" << endl;
@@ -146,7 +157,7 @@ int main()
             cout << "Ingrese el nombre del cliente: ";
             cin.ignore();
             getline(cin, nombre);
-            int posicion = encontrarPersonaEnLista(listaDePersonas, nombre);
+            int posicion = encontrarEnLista(listaDePersonas, nombre);
             if (posicion == -1)
             {
                 cout << "No se encontro el cliente" << endl;
@@ -187,28 +198,4 @@ int menu()
         return menu();
     }
     return opcion;
-}
-
-int encontrarTiendaEnLista(vector<Tienda> listaDeTiendas, string nombre)
-{
-    for (size_t i = 0; i < listaDeTiendas.size(); i++)
-    {
-        if (listaDeTiendas[i].getNombre() == nombre)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
-
-int encontrarPersonaEnLista(vector<Persona> listaDePersonas, string nombre)
-{
-    for (size_t i = 0; i < listaDePersonas.size(); i++)
-    {
-        if (listaDePersonas[i].getNombre() == nombre)
-        {
-            return i;
-        }
-    }
-    return -1;
 }
