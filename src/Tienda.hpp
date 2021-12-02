@@ -1,3 +1,8 @@
+/**
+ * @file Tienda.hpp
+ * @author Sebastian Marines (a01383056@tec.mx)
+ * @date 2021-12-01
+ */
 #include <iostream>
 #include <string>
 #include <vector>
@@ -28,20 +33,24 @@ public:
     bool operator==(Tienda &tienda);
 };
 
+// Constructor
 Tienda::Tienda(string nombre) : nombre(nombre)
 {
 }
 
+// Getters
 string Tienda::getNombre()
 {
     return nombre;
 }
 
+// Setters
 void Tienda::setNombre(string nombre)
 {
     this->nombre = nombre;
 }
 
+// Métodos
 void Tienda::agregarProducto(Producto producto)
 {
     productos.push_back(producto);
@@ -64,6 +73,7 @@ bool Tienda::comprarProducto(string nombreDelProducto, Persona &persona)
 
 void Tienda::mostrarProductos()
 {
+    // Se crea un hash map para llevar un conteo de la cantidad de cada producto y no imprimir los productos repetidos
     map<string, int> cantidadDeProductos;
     for (size_t i = 0; i < productos.size(); i++)
     {
@@ -75,6 +85,7 @@ void Tienda::mostrarProductos()
     }
 }
 
+// Sobrecarga del metodo mostrarProductos para que muestre los productos con un nombre determinado
 void Tienda::mostrarProductos(string nombre)
 {
     int cantidad = 0;

@@ -1,3 +1,8 @@
+/**
+ * @file Persona.hpp
+ * @author Sebastian Marines (a01383056@tec.mx)
+ * @date 2021-12-01
+ */
 #include <string>
 #include <vector>
 #include <map>
@@ -25,6 +30,7 @@ public:
     void mostrarProductosComprados();
 };
 
+// Constructores
 Persona::Persona()
 {
 }
@@ -33,6 +39,7 @@ Persona::Persona(string nombre, string apellido) : nombre(nombre), apellido(apel
 {
 }
 
+// Getters
 string Persona::getNombre()
 {
     return nombre;
@@ -43,6 +50,7 @@ string Persona::getApellido()
     return apellido;
 }
 
+// Setters
 void Persona::setNombre(string nombre)
 {
     this->nombre = nombre;
@@ -53,6 +61,7 @@ void Persona::setApellido(string apellido)
     this->apellido = apellido;
 }
 
+// Métodos
 void Persona::agregarProducto(Producto producto)
 {
     productosComprados.push_back(producto);

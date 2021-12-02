@@ -1,3 +1,15 @@
+/**
+ * @file main.cpp
+ * @author Sebastian Marines (a01383056@tec.mx)
+ * @date 2021-12-01
+ */
+/*
+* Yo, como integrante de la comunidad estudiantil del Tecnológico de Monterrey,
+* soy consciente de que la trampa y el engaño afectan mi dignidad como persona, mi aprendizaje y mi formación,
+* por ello me comprometo a actuar honestamente, respetar y dar crédito al valor y esfuerzo con el que se elaboran las ideas propias,
+* las de los compañeros y de los autores,
+* así como asumir mi responsabilidad en la construcción de un ambiente de aprendizaje justo y confiable
+*/
 #include <iostream>
 #include <iomanip>
 #include "Persona.hpp"
@@ -8,6 +20,7 @@ using namespace std;
 
 int menu();
 
+// Plantilla de función para poder encontrar un elemento en un vector de cualquier tipo de clase
 template <class T>
 int encontrarEnLista(vector<T> lista, string nombre)
 {
