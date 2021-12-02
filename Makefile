@@ -3,7 +3,7 @@ SOURCE	= src/main.cpp
 HEADER	= src/Tienda.hpp src/Persona.hpp src/Producto.hpp
 OUT	= ric.out
 CC	 = g++
-FLAGS	 = -g -c -Wall
+FLAGS	 = -g -c -Wall -Wno-c++11-extensions -std=c++17
 LFLAGS	 =
 
 all: $(OBJS)
